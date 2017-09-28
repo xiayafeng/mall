@@ -70,8 +70,9 @@ public class CategoryServiceImpl implements ICategoryService {
         return ServerResponse.createBySuccess(categories);
     }
 
+    //递归本节点的id和子节点的id
     @Override
-    public ServerResponse getCategoryAndDeepChildrenCategory(Integer categoryId) {
+    public ServerResponse<List<Integer>> getCategoryAndDeepChildrenCategory(Integer categoryId) {
         Set<Category> categorySet = Sets.newHashSet();
         findChirdrenCategory(categorySet, categoryId);
 

@@ -178,6 +178,7 @@ public class ProductManageController {
         //判断用户是管理员账户
         if (iUserService.checkAdminRole(user).isSuccess()) {
             String path = request.getSession().getServletContext().getRealPath("upload");
+            System.out.println(path);
             String targetFileName = iFileService.upload(file, path);
             String url = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
             Map fileMap = Maps.newHashMap();
@@ -211,8 +212,8 @@ public class ProductManageController {
                 return resultMap;
             }
             String url = PropertiesUtil.getProperty("ftp.server.http.prefix") + targetFileName;
-            resultMap.put("success", false);
-            resultMap.put("msg", "上传失败");
+            resultMap.put("success", true);
+            resultMap.put("msg", "上传成功");
             resultMap.put("file_path", url);
             response.setHeader("Access-Control-Allow-Headers", "X-File-Name");
             return resultMap;
