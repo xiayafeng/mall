@@ -27,8 +27,7 @@ public class Shipping {
 
     private Date updateTime;
 
-    public Shipping(Integer id, Integer userId, String receiverName, String receiverPhone, String receiverMobile, String receiverProvince, String receiverCity, String receiverDistrict, String receiverAddress, String receiverZip, Date createTime, Date updateTime) {
-        this.id = id;
+    public Shipping(Integer userId, String receiverName, String receiverPhone, String receiverMobile, String receiverProvince, String receiverCity, String receiverDistrict, String receiverAddress, String receiverZip) {
         this.userId = userId;
         this.receiverName = receiverName;
         this.receiverPhone = receiverPhone;
@@ -38,11 +37,12 @@ public class Shipping {
         this.receiverDistrict = receiverDistrict;
         this.receiverAddress = receiverAddress;
         this.receiverZip = receiverZip;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
     }
 
     public Shipping() {
+    }
+
+    public Shipping(Integer userid, String 张三, String s, String s1, String s2, String 湖北省, String 武汉市, String 洪山区, String 杨家湾, String s3) {
         super();
     }
 

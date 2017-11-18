@@ -32,12 +32,12 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.mall.pojo.Shipping" >
-    insert into mmall_shipping (id, user_id, receiver_name, 
+    insert into mmall_shipping (user_id, receiver_name,
       receiver_phone, receiver_mobile, receiver_province, 
       receiver_city, receiver_district, receiver_address, 
       receiver_zip, create_time, update_time
       )
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR}, 
+    values (#{userId,jdbcType=INTEGER}, #{receiverName,jdbcType=VARCHAR},
       #{receiverPhone,jdbcType=VARCHAR}, #{receiverMobile,jdbcType=VARCHAR}, #{receiverProvince,jdbcType=VARCHAR}, 
       #{receiverCity,jdbcType=VARCHAR}, #{receiverDistrict,jdbcType=VARCHAR}, #{receiverAddress,jdbcType=VARCHAR}, 
       #{receiverZip,jdbcType=VARCHAR}, now(), now()
@@ -176,4 +176,24 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <insert id="insertBatch" parameterType="ArrayList">
+    INSERT INTO mmall_shipping(user_id, receiver_name,
+      receiver_phone, receiver_mobile, receiver_province,
+      receiver_city, receiver_district, receiver_address,
+      receiver_zip, create_time, update_time ) VALUES
+      <foreach collection="list" separator="," item="item" index="index">
+        (#{item.userId}, #{item.receiverName},
+        #{item.receiverPhone}, #{item.receiverMobile}, #{item.receiverProvince},
+        #{item.receiverCity}, #{item.receiverDistrict}, #{item.receiverAddress},
+        #{item.receiverZip}, now(), now())
+      </foreach>
+  </insert>
+
+  <delete id="executeBatchSql" >
+    DELETE FROM mmall_shipping WHERE user_id = 100;
+    DELETE FROM mmall_shipping WHERE user_id = 101;
+    DELETE FROM mmall_shipping WHERE user_id = 102;
+
+  </delete>
 </mapper>
